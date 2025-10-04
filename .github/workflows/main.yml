@@ -47,54 +47,39 @@ jobs:
       # Build, Package, and Key Management
       # -------------------------------
       - name: Run Vite Production Build
-        # CRUCIAL: Must run base build before packaging!
         run: npm run build
 
       - name: Write private key from Secret
-        # CRUCIAL: The packaging script expects the key at the project root.
         run: echo "${{ secrets.CRX_PRIVATE_KEY }}" > discolors.pem
 
       - name: Build CRX and ZIP packages
-        # Runs the script that uses the key and the 'build/discolors' directory.
         run: npm run build-package
 
       # -------------------------------
       # Versioning (Only runs on 'main' branch push, not on tags)
       # -------------------------------
-      # NOTE: This step is typically run locally by the developer via `npm run release`
-      # and pushed with the tag. Running it here risks infinite loops/complex Git conflicts.
-      # Assuming you want to auto-bump upon merge to 'main' without a tag:
       - name: Auto-Bump version for main branch (if no tag exists)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         id: versioning
         run: npx standard-version --skip.tag=true --skip.commit=true
         env:
-          # Use the repository secret token for permissions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Version for Release Tagging
         id: get_version
-        # Get the version from the package.json file, assuming local 'npm run release' has run.
-        run: echo "VERSION=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
-
-      # -------------------------------
-      # Commit, Tag, and Push (Only necessary if you auto-bump above)
-      # -------------------------------
-      # NOTE: It is best practice to let the developer run `npm run release` LOCALLY
-      # and then push the commit+tag manually to trigger the release workflow.
+        shell: bash
+        run: |
+          echo "VERSION=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_OUTPUT
 
       # -------------------------------
       # GitHub Release (Triggered by the created tag)
       # -------------------------------
       - name: Create GitHub Release
-        # This action should be conditional to run only when a TAG is pushed.
         if: startsWith(github.ref, 'refs/tags/v')
         uses: ncipollo/release-action@v1
         with:
-          # Use GITHUB_REF_NAME to get the tag name (e.g., v1.0.1) directly
           tag: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
-          # The packages are in the 'build/' root, not a 'release/' subfolder
           artifacts: 'build/*.zip,build/*.crx'
           draft: false
           prerelease: false
