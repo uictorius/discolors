@@ -1,0 +1,48 @@
+{
+  "name": "discolors",
+  "version": "1.0.0",
+  "description": "A lightweight Chrome extension to apply custom themes and colorful gradients to Discord.",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src",
+    "format": "prettier --write \"src/**/*.{js,ts,tsx,html,css,scss,json,md}\"",
+    "release": "standard-version",
+    "build-package": "node package-extension.mjs",
+    "version-sync": "npm run release && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uictorius/discolors.git"
+  },
+  "keywords": [],
+  "author": "uictorius",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/uictorius/discolors/issues"
+  },
+  "homepage": "https://github.com/uictorius/discolors#readme",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.2.0",
+    "@types/chrome": "^0.1.22",
+    "@types/semver": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2",
+    "sass-embedded": "^1.93.2",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "vite": "^7.1.9"
+  },
+  "dependencies": {
+    "crx": "^5.0.1"
+  }
+}

@@ -1,0 +1,36 @@
+/**
+ * @file TypeScript configuration for the Discolors project.
+ * @description Sets compiler options for Vite, Chrome extension types,
+ * strict type checking, module resolution, and JSX support.
+ * TypeScript is used here mainly for type checking; Vite handles actual transpilation.
+ */
+{
+  "compilerOptions": {
+    // --- Target & Module ---
+    "target": "ESNext", // Modern JS output
+    "module": "ESNext", // Native ES modules
+    "moduleResolution": "Node", // Resolve modules like Node.js
+    "resolveJsonModule": true, // Allow importing JSON files
+
+    // --- Library & Types ---
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Browser + modern JS APIs
+    "types": ["chrome"], // Chrome extension typings
+
+    // --- JavaScript Interop ---
+    "allowJs": false, // Do not allow JS files
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+
+    // --- Strict Type Checking ---
+    "strict": true, // Enable all strict type checks
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true, // Skip type checks of external libs
+
+    // --- Other Options ---
+    "useDefineForClassFields": true,
+    "isolatedModules": true, // Required for Vite
+    "noEmit": true, // Vite handles actual transpilation
+    "jsx": "react-jsx" // JSX support (even if not using React)
+  },
+  "include": ["src/scripts/**/*.ts"]
+}

@@ -1,104 +1,192 @@
-# Discolors - Custom Discord Themes Extension
+# Discolors ✨: The Custom Theming Engine for Discord
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-![Privacy](https://img.shields.io/badge/Privacy-100%25_local_processing-blue)  
-![Release Version](https://img.shields.io/github/v/release/uictorius/Discolors?label=version)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Privacy](https://img.shields.io/badge/Privacy-100%25_local_processing-blue)
+![Release Version](https://img.shields.io/github/v/release/uictorius/discolors?label=version)
+[![Build Status](https://github.com/uictorius/discolors/actions/workflows/main.yml/badge.svg)](https://github.com/uictorius/discolors/actions/workflows/main.yml)
+[![Node.js Version](https://img.shields.io/badge/Node.js-24.x-green.svg)](https://nodejs.org/)
 
-Discolors is a lightweight Chrome extension that lets you apply custom themes and colorful gradients to Discord. All processing happens locally in your browser — no data leaves your device.
+**Discolors** is a high-performance Chrome extension built with **TypeScript** and **Vite** that enables full customization of the Discord web client. Move beyond standard dark/light modes with **personalized gradients, color palettes, and persistent theming**.
 
----
-
-## 🚀 Download Latest Version
-
-> ⚠️ **Latest Release (ZIP):** [Download Latest Version](https://github.com/uictorius/Discolors/releases/latest/download/Discolors.zip)
+🔑 **Zero Data Collection** — All processing and storage happen **locally in your browser**, ensuring your privacy.
 
 ---
 
-## 🔍 Important Disclaimers
+## 🚀 Installation
 
-### 🚫 Not Official
-**Discolors is NOT an official Discord product**  
-This extension is independently developed and not affiliated with Discord, Inc. "Discord" is a registered trademark of Discord, Inc.
+We recommend installing via the packaged CRX file for convenience, or using the ZIP method for development/testing.
 
-### 🔒 Privacy
-**We do not collect any data**  
-- No tracking  
-- No analytics  
-- No personal information stored  
-- No third-party requests  
+### Latest Release
+
+| Package Type          | Download Link                                                                                 | Description                           |
+| :-------------------- | :-------------------------------------------------------------------------------------------- | :------------------------------------ |
+| **CRX (Recommended)** | [Download CRX](https://github.com/uictorius/discolors/releases/latest/download/discolors.crx) | Installable package for Chrome.       |
+| **ZIP (Unpacked)**    | [Download ZIP](https://github.com/uictorius/discolors/releases/latest/download/discolors.zip) | Use with "Load unpacked" in Dev Mode. |
+
+### Installation Guide
+
+#### Option 1: CRX File
+
+1. Download the `.crx` file from the [latest release](https://github.com/uictorius/discolors/releases/latest).
+2. Open **`chrome://extensions`**.
+3. **Drag & drop** the `.crx` file into the extensions page.
+4. Confirm installation.
+5. If a **Safety Check** warning appears, open the three-dot menu on Discolors and choose **Keep this extension**.
+
+#### Option 2: ZIP File (Developer Mode)
+
+1. Download and **extract** the `.zip` package.
+2. Open **`chrome://extensions`**.
+3. Enable **Developer Mode**.
+4. Click **Load unpacked** and select the extracted folder.
+
+> Once installed, click the extension icon in your toolbar to configure themes and instantly apply them to Discord.
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 🎨 Custom Colors | Apply up to 5 custom colors or a single color |
-| 🌈 Gradient Support | Create linear gradients with adjustable angles |
-| 🔀 Random Colors | Automatically generate random color themes |
-| 🖥️ Local Processing | All changes are applied locally in your browser |
-| 🆓 Free & Open Source | Fully transparent code under MIT license |
+Discolors combines **flexibility, performance, and privacy** by leveraging **CSS Variables** and **Mutation Observers**.
+
+| Feature               | Description                                                          | Implementation Details                                                      |
+| :-------------------- | :------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **Custom Gradients**  | Apply rich, multi-color gradients to Discord’s background.           | Supports up to **5 colors** with adjustable directions (0°–360°).           |
+| **Dynamic Palettes**  | Instantly refresh Discord’s look with randomly generated color sets. | Pure in-browser color generation.                                           |
+| **Theme Persistence** | Keep your theme active even as Discord dynamically changes views.    | Uses **MutationObserver** in the Content Script.                            |
+| **Modern Stack**      | Built with modern tooling for performance and maintainability.       | **TypeScript** + **Vite** + **Sass**, ensuring type safety and fast builds. |
+
+---
+
+## 🔒 Privacy
+
+- **No tracking or analytics**
+- **All data stored locally** in `chrome.storage`
+- **Fully open-source** under MIT License
 
 ---
 
 ## 🖼️ Screenshots
 
-**Discover page theme example**  
-![Discover page](screenshots/screenshot-discover.png)
+**Discover page theme**
+![Discover](screenshots/screenshot-discover.png)
 
-**Direct messages theme example**  
-![Direct messages](screenshots/screenshot-dm.png)
+**Direct messages**
+![DMs](screenshots/screenshot-dm.png)
 
-**Shop page theme example**  
-![Shop page](screenshots/screenshot-shop.png)
+**Shop page**
+![Shop](screenshots/screenshot-shop.png)
 
----
+**Popup interface**
 
-## 🛠️ Installation
-
-### Chrome/Edge (Manual Installation)
-1. Download or clone this repository  
-2. Open `chrome://extensions` in your browser  
-3. Enable **Developer mode** (top-right toggle)  
-4. Click **Load unpacked**  
-5. Select the `Discolors` folder  
+![Popup](screenshots/screenshot-extension.png)
 
 ---
 
-## 🖥️ Usage
-1. Click the Discolors icon in your toolbar  
-2. Adjust the **Number of Colors**, **Colors**, **Gradient Direction**, or enable **Random Colors**  
-3. Click **Save Settings**  
-4. Changes will immediately apply to Discord pages in your browser  
+## 💻 Developer Setup
 
-**Popup interface example**  
-![Extension popup](screenshots/screenshot-extension.png)
+If you want to **run, test, or contribute** to Discolors:
 
----
+### Initial Setup
 
-## 🏗️ File Structure
-```text
-Discolors/
-├── icons/                  # Extension icons
-│   ├── 16x16.png           # Toolbar icon
-│   ├── 48x48.png           # Extension icon
-│   └── 128x128.png         # Store icon
-├── screenshots/            # Demo screenshots
-│   ├── screenshot-discover.png
-│   ├── screenshot-dm.png
-│   ├── screenshot-shop.png
-│   └── screenshot-extension.png
-├── manifest.json           # Extension configuration
-├── popup.html              # Popup UI
-├── popup.js                # Popup logic
-├── content.js              # Theme application script
-├── background.js           # Background tasks (update checker)
-└── LICENSE                 # MIT license
+```bash
+# Clone the repository
+git clone https://github.com/uictorius/discolors.git
+cd discolors
+
+# Install dependencies
+npm install
 ```
 
-## 🤝 Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
+### Available Scripts
 
+| Script                      | Command                            | Description                                                                                                                     |
+| :-------------------------- | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| **`npm run dev`**           | `vite`                             | Starts the **Vite dev server** with **HMR** for immediate development feedback.                                                 |
+| **`npm run build`**         | `vite build`                       | Compiles the production-ready extension files to the `build/discolors` directory.                                               |
+| **`npm run lint`**          | `eslint src`                       | Runs the linter (ESLint/TypeScript) to check for code quality and potential bugs.                                               |
+| **`npm run format`**        | `prettier --write "src/**/..."`    | Automatically formats the entire codebase using Prettier.                                                                       |
+| **`npm run release`**       | `standard-version`                 | Creates the release commit and Git tag, but **does not** sync the build files.                                                  |
+| **`npm run build-package`** | `node package-extension.mjs`       | Generates the **`.crx` and `.zip`** distribution files using the private key.                                                   |
+| **`npm run version-sync`**  | `npm run release && npm run build` | Executes version bumping, creates the tag, and immediately runs `npm run build` to synchronize version numbers in the manifest. |
+
+---
+
+## 🚀 Recommended Release Workflow
+
+The entire release process is triggered locally by your `version-sync` script, ensuring the `package.json` version is written to the build artifacts before publishing.
+
+### Key Requirement: Conventional Commits
+
+Before running the release script, ensure all features and fixes are committed using **Conventional Commit** prefixes (`feat:`, `fix:`, `chore:`, etc.). `standard-version` uses these to determine the next semantic version number (e.g., `1.0.0` -\> `1.0.1`).
+
+| Step                     | Command                                                    | Purpose                                                                                                                                                                                                                                          |
+| :----------------------- | :--------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. **Develop**           | `npm run dev`                                              | Start the development server and make your code changes.                                                                                                                                                                                         |
+| 2. **Finalize Code**     | `npm run format && npm run lint`                           | Ensure code quality and consistent style across all modified files.                                                                                                                                                                              |
+| 3. **Commit Changes**    | `git add .` <br> `git commit -m "feat: add new feature X"` | **Add and commit all completed features/fixes** using the required **Conventional Commit** format.                                                                                                                                               |
+| 4. **Version & Sync**    | `npm run version-sync`                                     | **Automates the release:** Bumps the version (e.g., `1.0.1`), creates the `CHANGELOG.md`, creates the special **release commit and Git tag**, and runs `npm run build` to **sync the new version** into the `manifest.json` in the build folder. |
+| 5. **Package Artifacts** | `npm run build-package`                                    | Creates the final, versioned **`.crx` and `.zip`** files from the synchronized build directory.                                                                                                                                                  |
+| 6. **Deploy**            | `git push --follow-tags`                                   | Pushes the release commit and the new tag to GitHub, triggering the CI/CD pipeline (`main.yml`) to create the official GitHub Release with your artifacts.                                                                                       |
+
+---
+
+## 🏗️ Project Structure
+
+```text
+discolors/
+├── eslint.config.js
+├── LICENSE
+├── package-extension.mjs
+├── package.json
+├── package-lock.json
+├── README.md
+├── screenshots
+│   ├── screenshot-discover.png
+│   ├── screenshot-dm.png
+│   ├── screenshot-extension.png
+│   └── screenshot-shop.png
+├── src
+│   ├── assets
+│   │   └── icons
+│   │       ├── 128x128.png
+│   │       ├── 16x16.png
+│   │       └── 48x48.png
+│   ├── manifest.json
+│   ├── scripts
+│   │   ├── background
+│   │   │   └── index.ts
+│   │   ├── content
+│   │   │   └── index.ts
+│   │   ├── popup
+│   │   │   └── main.ts
+│   │   └── shared
+│   │       ├── constants.ts
+│   │       ├── storage.ts
+│   │       ├── types.ts
+│   │       └── utils.ts
+│   ├── styles
+│   │   └── popup.scss
+│   └── ui
+│       └── popup.html
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these guidelines to ensure consistency across the project:
+
+1. **Fork** the repository and create a new branch for your feature or fix.
+2. Before committing, always run:
+   ```bash
+   npm run format && npm run lint
+   ```
+
+---
 
 ## 📄 License
-MIT License - See [LICENSE](LICENSE) for full text
+
+MIT License — see [LICENSE](LICENSE) for details.

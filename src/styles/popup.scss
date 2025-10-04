@@ -1,0 +1,296 @@
+/**
+ * @file Popup SCSS styles for Discolors extension.
+ * @description SCSS stylesheet with theme variables, nested selectors,
+ * and modular structure for the popup window of the Discolors extension.
+ * Supports light/dark themes, inputs, buttons, and responsive UI components.
+ */
+
+// ============================
+// 1. Theme Variables
+// ============================
+:root {
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans',
+    'Liberation Sans', Arial, sans-serif;
+
+  // Light theme
+  --bg-color: #f7f8fa;
+  --card-bg-color: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --accent-color: #2563eb;
+  --accent-color-hover: #1d4ed8;
+  --accent-text-color: #ffffff;
+  --input-bg-color: #f9fafb;
+}
+
+// Dark theme override
+html[data-theme='dark'] {
+  --bg-color: #111827;
+  --card-bg-color: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --border-color: #374151;
+  --accent-color: #3b82f6;
+  --accent-color-hover: #2563eb;
+  --input-bg-color: #374151;
+}
+
+// ============================
+// 2. Base Styles
+// ============================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  width: 350px;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+// ============================
+// 3. Card Layout & Banner
+// ============================
+.card {
+  background: var(--card-bg-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background-color 0.2s ease;
+
+  .header {
+    text-align: center;
+    margin-bottom: 8px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+// NEW: Update Banner Styles
+.update-banner {
+  background-color: #fca5a5; /* Light red/pink for alert */
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #991b1b;
+
+  // Dark theme override for banner
+  html[data-theme='dark'] & {
+    background-color: #dc2626; /* Darker red */
+    border-color: #ef4444;
+    color: #fef2f2;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+// ============================
+// 4. Form Groups
+// ============================
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+}
+
+// ============================
+// 5. Inputs
+// ============================
+select,
+input[type='range'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--accent-color) 20%, transparent);
+  }
+}
+
+// Color pickers
+.colors-container {
+  display: flex;
+  gap: 8px;
+
+  input[type='color'] {
+    flex: 1;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--accent-color) 40%, transparent);
+    }
+  }
+}
+
+// Gradient slider
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  input[type='range'] {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .slider-value {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    width: 40px;
+    text-align: right;
+  }
+}
+
+// Switch toggle
+.switch-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: color-mix(in srgb, var(--border-color) 80%, white);
+      transition: 0.3s;
+      border-radius: 24px;
+
+      &::before {
+        position: absolute;
+        content: '';
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+      }
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-color);
+
+      &::before {
+        transform: translateX(20px);
+      }
+    }
+  }
+}
+
+// ============================
+// 6. Buttons and Status
+// ============================
+#saveBtn {
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-1px);
+  }
+}
+
+#status {
+  text-align: center;
+  font-size: 13px;
+  min-height: 20px;
+}
+
+// ============================
+// 7. Footer
+// ============================
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+  margin-top: 8px;
+}

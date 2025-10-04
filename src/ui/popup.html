@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Discolors - Theme Settings</title>
+  </head>
+  <body>
+    <div class="card">
+      <header class="header">
+        <h2>Discolors</h2>
+        <h3>Theme Settings</h3>
+      </header>
+
+      <div id="updateBanner" class="update-banner" style="display: none"></div>
+
+      <div class="form-group">
+        <label for="colorCount">Number of Colors</label>
+        <select id="colorCount">
+          <option value="1">1 Color</option>
+          <option value="2">2 Colors</option>
+          <option value="3">3 Colors</option>
+          <option value="4">4 Colors</option>
+          <option value="5" selected>5 Colors</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="colors-group">
+        <label id="colors-label">Colors</label>
+        <div class="colors-container">
+          <input type="color" id="color1" value="#213220" />
+          <input type="color" id="color2" value="#344e41" />
+          <input type="color" id="color3" value="#588157" />
+          <input type="color" id="color4" value="#a3b18a" />
+          <input type="color" id="color5" value="#dad7cd" />
+        </div>
+      </div>
+
+      <div class="form-group" id="gradient-controls">
+        <label for="gradientDirection">Gradient Direction</label>
+        <div class="slider-container">
+          <input
+            type="range"
+            id="gradientDirection"
+            min="0"
+            max="360"
+            value="90"
+          />
+          <span class="slider-value" id="directionValue">90°</span>
+        </div>
+      </div>
+
+      <div class="form-group switch-group">
+        <label for="useRandomColors">Use Random Colors</label>
+        <label class="switch">
+          <input type="checkbox" id="useRandomColors" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <button id="saveBtn">Save Settings</button>
+      <p id="status"></p>
+
+      <footer class="footer">
+        Discolors &copy; 2025 | Version <span id="version"></span>
+      </footer>
+    </div>
+
+    <script type="module" src="../scripts/popup/main.ts"></script>
+  </body>
+</html>
