@@ -113,20 +113,48 @@ npm install
 
 ## 🚀 Recommended Release Workflow
 
-The entire release process is triggered locally by your `version-sync` script, ensuring the `package.json` version is written to the build artifacts before publishing.
+The entire release process is triggered locally via your `version-sync` or `release` script, ensuring the version in `package.json` is properly synced to the build artifacts before publishing.
 
 ### Key Requirement: Conventional Commits
 
-Before running the release script, ensure all features and fixes are committed using **Conventional Commit** prefixes (`feat:`, `fix:`, `chore:`, etc.). `standard-version` uses these to determine the next semantic version number (e.g., `1.0.0` -\> `1.0.1`).
+Before running the release script, make sure all new features and fixes are committed using **Conventional Commit** prefixes (`feat:`, `fix:`, `chore:`, etc.). `standard-version` uses these commit messages to determine the next semantic version number (e.g., `1.0.0` → `1.0.1`).
 
-| Step                     | Command                                                    | Purpose                                                                                                                                                                                                                                          |
-| :----------------------- | :--------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. **Develop**           | `npm run dev`                                              | Start the development server and make your code changes.                                                                                                                                                                                         |
-| 2. **Finalize Code**     | `npm run format && npm run lint`                           | Ensure code quality and consistent style across all modified files.                                                                                                                                                                              |
-| 3. **Commit Changes**    | `git add .` <br> `git commit -m "feat: add new feature X"` | **Add and commit all completed features/fixes** using the required **Conventional Commit** format.                                                                                                                                               |
-| 4. **Version & Sync**    | `npm run version-sync`                                     | **Automates the release:** Bumps the version (e.g., `1.0.1`), creates the `CHANGELOG.md`, creates the special **release commit and Git tag**, and runs `npm run build` to **sync the new version** into the `manifest.json` in the build folder. |
-| 5. **Package Artifacts** | `npm run build-package`                                    | Creates the final, versioned **`.crx` and `.zip`** files from the synchronized build directory.                                                                                                                                                  |
-| 6. **Deploy**            | `git push --follow-tags`                                   | Pushes the release commit and the new tag to GitHub, triggering the CI/CD pipeline (`main.yml`) to create the official GitHub Release with your artifacts.                                                                                       |
+| Step                     | Command                                                    | Purpose                                                                                                                                                                                                                                |
+| :----------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. **Develop**           | `npm run dev`                                              | Start the development server and implement your code changes.                                                                                                                                                                          |
+| 2. **Finalize Code**     | `npm run format && npm run lint`                           | Ensure code quality and consistent style across all modified files.                                                                                                                                                                    |
+| 3. **Commit Changes**    | `git add .` <br> `git commit -m "feat: add new feature X"` | **Add and commit all completed features/fixes** using the required **Conventional Commit** format.                                                                                                                                     |
+| 4. **Version & Sync**    | `npm run version-sync` or `npm run release`                | **Automates the release:** bumps the version (e.g., `1.0.1`), updates `CHANGELOG.md`, creates the **release commit and Git tag**, and runs `npm run build` to **sync the new version** into `manifest.json` and other build artifacts. |
+| 5. **Package Artifacts** | `npm run build-package`                                    | Creates the final, versioned **`.crx` and `.zip`** files from the synchronized build directory.                                                                                                                                        |
+| 6. **Deploy**            | `git push --follow-tags origin main`                       | Pushes the release commit and the new tag to GitHub, triggering the CI/CD pipeline (`main.yml`) to create the official GitHub Release and attach the built artifacts.                                                                  |
+
+---
+
+### Example Workflow
+
+1. **Stage changes**
+
+```bash
+git add .
+```
+
+2. **Commit changes with Conventional Commit format**
+
+```bash
+git commit -m $'refactor!: restructure project into modular architecture with TypeScript and Vite'
+```
+
+3. **Generate release and update version/package.json/manifest.json/CHANGELOG**
+
+```bash
+npm run release
+```
+
+4. **Push commits and tag to GitHub**
+
+```bash
+git push --follow-tags origin main
+```
 
 ---
 
