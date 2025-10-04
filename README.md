@@ -25,16 +25,6 @@ We recommend installing via the packaged CRX file for convenience, or using the 
 
 ### Installation Guide
 
-#### Option 1: CRX File
-
-1. Download the `.crx` file from the [latest release](https://github.com/uictorius/discolors/releases/latest).
-2. Open **`chrome://extensions`**.
-3. **Drag & drop** the `.crx` file into the extensions page.
-4. Confirm installation.
-5. If a **Safety Check** warning appears, open the three-dot menu on Discolors and choose **Keep this extension**.
-
-#### Option 2: ZIP File (Developer Mode)
-
 1. Download and **extract** the `.zip` package.
 2. Open **`chrome://extensions`**.
 3. Enable **Developer Mode**.
