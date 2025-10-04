@@ -1,6 +1,6 @@
 {
   "name": "discolors",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A lightweight Chrome extension to apply custom themes and colorful gradients to Discord.",
   "scripts": {
     "prepare": "husky",
