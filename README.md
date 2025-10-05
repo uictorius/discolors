@@ -34,6 +34,22 @@ We recommend installing via the packaged CRX file for convenience, or using the 
 
 ---
 
+## ⚙️ Settings
+
+### Dark or Light Themes
+
+This extension automatically recognizes the **Dark** and **Light** themes.
+
+If you want to use light or dark colors, you'll need to change your theme in your Discord settings.
+
+**Here's how:**
+
+`User Settings` $\rightarrow$ `Appearance` $\rightarrow$ **Theme**
+
+![Settings](screenshots/screenshot-settings.png)
+
+---
+
 ## ✨ Features
 
 Discolors combines **flexibility, performance, and privacy** by leveraging **CSS Variables** and **Mutation Observers**.
